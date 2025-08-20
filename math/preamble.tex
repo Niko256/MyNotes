@@ -1,0 +1,221 @@
+\usepackage[russian]{babel}
+\usepackage{hyphenat}
+\usepackage{xparse}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures/} }
+\usepackage{xargs}
+\usepackage{parskip}
+\usepackage{marginnote}
+\usepackage{todonotes}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{centernot}
+\usepackage{bm}
+\usepackage{thmtools}
+\usepackage{mdframed}
+\usepackage{subcaption}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xecyr}
+\usepackage[russian]{cleveref}  % after amsmath
+\usepackage{accents}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{xcolor}
+\usepackage{amsthm}
+\usepackage{shadethm}
+\usepackage{framed}
+
+\newcommand*\mnote[1]{\marginnote{#1}}
+
+% SETTINGS
+\geometry{
+  a4paper,
+  left=20mm,
+  right=35mm,  % for margin notes
+  top=25mm,
+  bottom=25mm
+}
+
+\newcommand\N{\ensuremath{\mathbb{N}}}
+\newcommand\R{\ensuremath{\mathbb{R}}}
+\newcommand\Z{\ensuremath{\mathbb{Z}}}
+\renewcommand\O{\ensuremath{\varnothing}}
+\newcommand\Q{\ensuremath{\mathbb{Q}}}
+
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\rnd}{rnd}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Imf}{Im}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\Char}{Char}
+\DeclareMathOperator{\Hom}{Hom}
+
+\def\@lecture{}%
+\newcommand{\lecture}[3]{
+    \ifthenelse{\isempty{#3}}{%
+        \def\@lecture{Лекция #1}%
+    }{%
+        \def\@lecture{Лекция #1: #3}%
+    }%
+    \subsection*{\@lecture}
+    \marginpar{\small\textsf{\mbox{#2}}}
+}
+
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{framed}
+
+% Определение цветов
+\definecolor{thmcolor}{HTML}{EDF8FF} % Светло-голубой
+\definecolor{defcolor}{HTML}{F3E5F5} % Светло-голубой
+\definecolor{excolor}{HTML}{FFF8DC} % Светло-коричневый
+\definecolor{propcolor}{HTML}{F0FFF0} % Светло-зеленый
+\definecolor{stmtcolor}{HTML}{FFF0F5} % Светло-розовый
+\definecolor{lemcolor}{HTML}{F5FFFA} % Светло-зеленый
+
+% Определение стилей
+\newtheoremstyle{mythmstyle}
+  {3pt} % Space above
+  {3pt} % Space below
+  {} % Body font
+  {} % Indent amount
+  {\bfseries} % Theorem head font
+  {.} % Punctuation after theorem head
+  {.5em} % Space after theorem head
+  {} % Theorem head spec (can be left empty, meaning `normal')
+
+\newtheoremstyle{mydefstyle}
+  {3pt} % Space above
+  {3pt} % Space below
+  {} % Body font
+  {} % Indent amount
+  {\bfseries} % Theorem head font
+  {.} % Punctuation after theorem head
+  {.5em} % Space after theorem head
+  {} % Theorem head spec (can be left empty, meaning `normal')
+
+\newtheoremstyle{myexstyle}
+  {3pt} % Space above
+  {3pt} % Space below
+  {} % Body font
+  {} % Indent amount
+  {\bfseries} % Theorem head font
+  {.} % Punctuation after theorem head
+  {.5em} % Space after theorem head
+  {} % Theorem head spec (can be left empty, meaning `normal')
+
+\newtheoremstyle{mypropstyle}
+  {3pt} % Space above
+  {3pt} % Space below
+  {} % Body font
+  {} % Indent amount
+  {\bfseries} % Theorem head font
+  {.} % Punctuation after theorem head
+  {.5em} % Space after theorem head
+  {} % Theorem head spec (can be left empty, meaning `normal')
+
+\newtheoremstyle{mystmtstyle}
+  {3pt} % Space above
+  {3pt} % Space below
+  {} % Body font
+  {} % Indent amount
+  {\bfseries} % Theorem head font
+  {.} % Punctuation after theorem head
+  {.5em} % Space after theorem head
+  {} % Theorem head spec (can be left empty, meaning `normal')
+
+\newtheoremstyle{mylemstyle}
+  {3pt} % Space above
+  {3pt} % Space below
+  {} % Body font
+  {} % Indent amount
+  {\bfseries} % Theorem head font
+  {.} % Punctuation after theorem head
+  {.5em} % Space after theorem head
+  {} % Theorem head spec (can be left empty, meaning `normal')
+
+% Применение стилей
+\theoremstyle{mythmstyle}
+\newtheorem{theorem}{Теорема}
+
+\theoremstyle{mydefstyle}
+\newtheorem{definition}{Определение}
+
+\theoremstyle{myexstyle}
+\newtheorem{example}{Пример}
+
+\theoremstyle{mypropstyle}
+\newtheorem{property}{Свойство}
+
+\theoremstyle{mystmtstyle}
+\newtheorem{statement}{Утверждение}
+
+\theoremstyle{mylemstyle}
+\newtheorem{lemma}{Лемма}
+
+
+\newcommand{\norm}[1]{\|#1\|}
+\newcommand{\inner}[2]{\langle #1, #2 \rangle}
+
+% Оформление фреймов
+\newenvironment{shth}
+  {\def\FrameCommand{\fboxsep=\FrameSep \fcolorbox{black}{thmcolor}}\MakeFramed {\FrameRestore}}
+  {\endMakeFramed}
+
+\newenvironment{shdef}
+  {\def\FrameCommand{\fboxsep=\FrameSep \fcolorbox{black}{defcolor}}\MakeFramed {\FrameRestore}}
+  {\endMakeFramed}
+
+\newenvironment{shex}
+  {\def\FrameCommand{\fboxsep=\FrameSep \fcolorbox{black}{excolor}}\MakeFramed {\FrameRestore}}
+  {\endMakeFramed}
+
+\newenvironment{shprop}
+  {\def\FrameCommand{\fboxsep=\FrameSep \fcolorbox{black}{propcolor}}\MakeFramed {\FrameRestore}}
+  {\endMakeFramed}
+
+\newenvironment{shstmt}
+  {\def\FrameCommand{\fboxsep=\FrameSep \fcolorbox{black}{stmtcolor}}\MakeFramed {\FrameRestore}}
+  {\endMakeFramed}
+
+\newenvironment{shlem}
+  {\def\FrameCommand{\fboxsep=\FrameSep \fcolorbox{black}{lemcolor}}\MakeFramed {\FrameRestore}}
+  {\endMakeFramed}
+
+\theoremstyle{plain}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\declaretheoremstyle[
+  numbered=no,
+  qed=$\lrcorner$
+]{mystyle}
+
+% Настройка заголовков
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+  {\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
+
+% Убираем отображение названия главы вверху страницы
+\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+\titlespacing*{\subsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\titlespacing*{\subsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% Настройка верхнего колонтитула
+\fancyhf{} % Очищаем верхний и нижний колонтитулы
+\renewcommand{\headrulewidth}{0pt} % Убираем линию вверху страницы
+\fancyfoot[C]{\thepage} % Номер страницы внизу по центру
+

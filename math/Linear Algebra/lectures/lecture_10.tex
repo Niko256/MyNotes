@@ -1,0 +1,478 @@
+\chapter{Элементы теории групп}
+
+\begin{flushright}
+\small
+\itshape
+«Математика — это искусство называть разные вещи одним и тем же именем.» \
+\upshape
+— Анри Пуанкаре
+\end{flushright}
+
+\begin{shdef}
+    \begin{definition} [Группа]
+    \leavevmode \nl
+
+    \textbf{Группой} называется множество \( G \), на котором задана бинарная операция \( \circ : G \times G \to G \), удовлетворяющая следующим аксиомам:
+\begin{enumerate}
+    \item \textbf{Ассоциативность}: \(\forall a, b, c \in G \) выполняется
+    \[
+    (a \circ b) \circ c = a \circ (b \circ c).
+    \]
+    \item \textbf{Существование нейтрального элемента}: Существует элемент \( e \in G \), \\называемый \textbf{нейтральным элементом} (или единицей), такой, что \(\forall a \in G \) выполняется
+    \[
+    e \circ a = a \circ e = a.
+    \]
+    \item \textbf{Существование обратного элемента}: \(\forall a \in G \) существует элемент \( a^{-1} \in G \), называемый \textbf{обратным элементом} к \( a \), такой, что
+    \[
+    a \circ a^{-1} = a^{-1} \circ a = e.
+    \]
+    \end{enumerate}
+    \end{definition}
+\end{shdef}
+
+\begin{shdef}
+    \begin{definition} [Абелева группа]
+    \leavevmode \nl
+
+    Группа \( G \) называется \textbf{абелевой} (или коммутативной), если для любых \( a, b \in G \) выполняется
+    \[
+    a \circ b = b \circ a.
+    \]
+    
+    \textbf{Примеры:}
+    \begin{itemize}
+        \item Группа целых чисел по сложению \( (\mathbb{Z}, +) \).
+        \item Группа вещественных чисел по сложению \( (\mathbb{R}, +) \).
+        \item Группа ненулевых вещественных чисел по умножению \( (\mathbb{R} \setminus \{0\}, \cdot) \).
+    \end{itemize}
+    \end{definition}
+\end{shdef}
+
+\clearpage
+\begin{shex} 
+
+Примеры:
+
+    1. \textbf{Группа целых чисел по сложению}:
+   \begin{itemize}
+       \item Множество: \( \mathbb{Z}\)
+       \item Операция: сложение \( + \)
+       \item Нейтральный элемент: \( 0 \)
+       \item Обратный элемент: для \( a \in \mathbb{Z} \) обратный элемент — это \( -a \)
+       \item Свойства: $a + b = b + a \quad \text{(абелева группа)}$
+   \end{itemize}
+
+    2. \textbf{Группа биекций множества}:
+   \begin{itemize}
+       \item Множество: \( \text{Bij}(X) \) — множество всех биекций \(\phi: G \to G \) множества \( X \) на себя.
+       \item Операция: композиция отображений \( \circ \): \(\phi \circ \psi(x) = \phi(\psi(x))\)
+       \item Нейтральный элемент: тождественное отображение \( \mathcal{I}(x)  = x \quad \forall x \in X\)
+       \item Обратный элемент: обратное отображение \( \phi^{-1} \)
+       \item Свойства: $ \phi \circ \psi \neq \psi \circ \phi \quad \text{в общем случае (неабелева группа, если \( |X| \geq 3 \))}$
+   \end{itemize}
+
+    3. \textbf{Группа невырожденных матриц}:
+   \begin{itemize}
+       \item Множество: \( GL(n, \mathbb{R}) \) — множество всех квадратных матриц размера \( n \times n \) с ненулевым определителем.
+       \item Операция: матричное умножение \( \cdot \)
+       \item Нейтральный элемент: единичная матрица \( I \)
+       \item Обратный элемент: для матрицы \( A \in GL(n, \mathbb{R}) \) обратный элемент — это \\обратная матрица \( A^{-1} \)
+       \item Свойства: $A \cdot B \neq B \cdot A \quad \text{в общем случае (неабелева группа при \( n \geq 2 \))}$
+   \end{itemize}
+   
+4. \textbf{Группа движений \( \text{Isom}(\mathbb{R}^n) \)}:
+    \begin{itemize}
+       \item Множество: \( \text{Isom}(\mathbb{R}^n) \) — множество всех изометрий (движений) пространства \( \mathbb{R}^n \), то есть биекций \( \phi: \mathbb{R}^n \to \mathbb{R}^n \), сохраняющих расстояние:
+       \[
+       \|x_1 - x_2\| = \|\phi(x_1) - \phi(x_2)\| \quad \forall x_1, x_2 \in \mathbb{R}^n.
+       \]
+       \item Операция: композиция отображений \( \circ \): \( \phi \circ \psi(x) = \phi(\psi(x)) \).
+       \item Нейтральный элемент: тождественное отображение \( \mathcal{I}_{\mathbb{R}^n} \), заданное как \( \mathcal{I}_{\mathbb{R}^n}(x) = x \) \(\quad \forall x \in \mathbb{R}^n \).
+       \item Обратный элемент: для изометрии \( \phi \in \text{Isom}(\mathbb{R}^n) \) обратный элемент — это обратное отображение \( \phi^{-1} \), которое также является изометрией.
+    \end{itemize}
+\end{shex}
+
+\clearpage
+
+
+\begin{shdef}
+    \begin{definition} [Подгруппа]
+    \leavevmode \nl
+
+    Пусть \( G \) — группа с операцией \( \circ \). Подмножество \( H \subset G \) называется \textbf{подгруппой} группы \( G \), если:
+    \begin{enumerate}
+        \item \( H \) замкнуто относительно операции \( \circ \): \(\forall a, b \in H \) выполняется \( a \circ b \in H \).
+        \item \( H \) содержит нейтральный элемент \( e \) группы \( G \): \( e \in H \).
+        \item \( H \) замкнуто относительно взятия обратного элемента: \(\forall a \in H \) выполняется \( a^{-1} \in H \).
+    \end{enumerate}
+    \end{definition}
+\end{shdef}
+
+\section{Свойства группы}
+
+\begin{shex}
+    \begin{enumerate}
+        \item \textbf{Единичный элемент единственен:} 
+              \[
+              \exists!\, e \in G \quad \text{такой, что} \quad \forall a \in G \quad a \circ e = e \circ a = a.
+              \]
+              
+              \[
+              \text{Пусть } e_1, e_2 \text{ — нейтральные элементы. Тогда } e_1 = e_1 \circ e_2 = e_2.
+              \]
+
+        \item \textbf{Обратный элемент единственен:} 
+              \[
+              \forall a \in G \quad \exists!\, a^{-1} \in G \quad \text{такой, что} \quad a \circ a^{-1} = a^{-1} \circ a = e.
+              \]
+              
+              \[
+              \text{Пусть } b, c \text{ — обратные к } a. \text{ Тогда } b = b \circ e = b \circ (a \circ c) = (b \circ a) \circ c = e \circ c = c.
+              \]
+
+        \item \textbf{Уравнения \( a \circ x = c \) и \( x \circ b = c \) имеют единственное решение:} 
+              \[
+              \forall a, b, c \in G \quad \exists!\, x \in G \quad \text{такой, что} \quad a \circ x = c \quad \text{и} \quad x \circ b = c.
+              \]
+              
+              \[
+              \text{Для } a \circ x = c: \ x = a^{-1} \circ c. \quad \text{Для } x \circ b = c: \ x = c \circ b^{-1}.
+              \]
+
+        \item \textbf{Свойство сокращения:} 
+              \[
+              \forall a, b, c \in G \quad a \circ b = a \circ c \iff b = c.
+              \]
+              
+              \[
+              \text{Если } a \circ b = a \circ c, \text{ то } b = c \text{ (умножаем слева на } a^{-1}). 
+              \]
+              \[
+              \text{Если } b \circ a = c \circ a, \text{ то } b = c \text{ (умножаем справа на } a^{-1}).
+              \]
+
+        \item \textbf{Обратный элемент композиции:} 
+              \[
+              \forall a, b \in G \quad (a \circ b)^{-1} = b^{-1} \circ a^{-1}.
+              \]
+              
+              \[
+              (a \circ b) \circ (b^{-1} \circ a^{-1}) = a \circ (b \circ b^{-1}) \circ a^{-1} = a \circ e \circ a^{-1} = e.
+              \]
+              
+              \[
+              \text{Аналогично, } (b^{-1} \circ a^{-1}) \circ (a \circ b) = e. \text{ Значит, } (a \circ b)^{-1} = b^{-1} \circ a^{-1}.
+              \]
+              
+    \end{enumerate}
+\end{shex}
+
+\begin{shdef}
+    \begin{definition} [Изоморфизм групп] \( (G, \circ) \) и \( (H, \ast) \) - две группы.
+    \leavevmode \nl
+
+    Отображение \( \phi: G \to H \) называется \textbf{изоморфизмом групп}, если:
+    \begin{enumerate}
+        \item \( \phi \) является \textbf{биекцией} (взаимно однозначным отображением).
+        \item \( \phi \) сохраняет групповую операцию, то есть для любых \( a, b \in G \) выполняется:
+        \[
+        \phi(a \circ b) = \phi(a) \ast \phi(b).
+        \]
+    \end{enumerate}
+
+    Если такой изоморфизм существует, группы \( G \) и \( H \) называются \textbf{изоморфными}, и обозначается это как \( G \cong H \).
+    
+    \textbf{Смысл изоморфизма:}
+    \begin{itemize}
+        \item Изоморфизм групп показывает, что две группы имеют одинаковую структуру, даже если их элементы и операции выглядят по-разному.
+        \item Изоморфизм позволяет изучать группы абстрактно, не завися от конкретного представления их элементов и операций.
+    \end{itemize}
+    \end{definition}
+\end{shdef}
+
+\begin{shex}
+\textbf{Свойства изоморфизма:}
+\leavevmode \nl
+
+\begin{enumerate}
+    \item \textbf{Нейтральный элемент переходит в нейтральный:} 
+          \[
+            \text{Если } e_G \text{ — нейтральный элемент группы } G, \text{ то } \phi(e_G) = e_H.
+          \]
+
+    \item \textbf{Обратный элемент переходит в обратный:} 
+          \[
+          \text{Если } a \in G \text{ и } a^{-1} \text{ — обратный к } a, \text{ то } \phi(a^{-1}) = \phi(a)^{-1}.
+          \]
+\end{enumerate}
+\end{shex}
+
+
+\boxed{\textbf{1. Нейтральный элемент переходит в нейтральный:}}
+
+Пусть \( \phi: G \to H \) — изоморфизм. Тогда для любого \( a \in G \):
+\[
+\phi(a) = \phi(a \circ e_G) = \phi(a) \circ \phi(e_G).
+\]
+Умножая обе части на \( \phi(a)^{-1} \), получаем:
+\[
+\phi(a)^{-1} \circ \phi(a) \circ \phi(e_G) = \phi(a)^{-1} \circ \phi(a).
+\]
+Упрощая, получаем:
+\[
+e_H \circ \phi(e_G) = e_H \quad \lra \quad \phi(e_G) = e_H.
+\]
+
+\boxed{\textbf{2. Обратный элемент переходит в обратный:}}
+
+Рассмотрим \( \phi(a \circ a^{-1}) = \phi(e_G) = e_H \).
+
+С другой стороны, \( \phi(a \circ a^{-1}) = \phi(a) \circ \phi(a^{-1}) \).
+
+Таким образом:
+\[
+\phi(a) \circ \phi(a^{-1}) = e_H, \text{ откуда } \phi(a^{-1}) = \phi(a)^{-1}.
+\]
+
+\section{Циклические подгруппы}
+
+\begin{shdef}
+    \begin{definition} [Циклическая подгруппа]
+    \leavevmode \nl
+
+    Пусть \( G \) — группа, и \( a \in G \) — произвольный элемент. \textbf{Циклической подгруппой}, порождённой элементом \( a \), называется множество всех степеней элемента \( a \):
+    \[
+    \langle a \rangle = \{ a^n \mid n \in \mathbb{Z} \},
+    \]
+    где:
+    \begin{itemize}
+        \item \( a^0 = e \) (нейтральный элемент группы),
+        \item \( a^n = \underbrace{a \circ a \circ \dots \circ a}_{n \text{ раз}} \) для \( n > 0 \),
+        \item \( a^{-n} = \underbrace{a^{-1} \circ a^{-1} \circ \dots \circ a^{-1}}_{n \text{ раз}} \) для \( n > 0 \).
+    \end{itemize}
+
+    Циклическая подгруппа \( \langle a \rangle \) является наименьшей подгруппой группы \( G \), \\содержащей \textbf{образующий} элемент \( a \).
+    \end{definition}
+\end{shdef}
+
+\begin{shdef}
+    \begin{definition} [Бесконечная и конечная циклические подгруппы]
+    \leavevmode \nl
+
+    Циклическая подгруппа \( \langle a \rangle = \{ a^n \mid n \in \mathbb{Z} \} \) может быть:
+    \begin{itemize}
+        \item \textbf{Бесконечной циклической подгруппой}, если все элементы \( a^n \) различны при различных \( n \), то есть:
+        \[
+        a^m \neq a^s \quad \forall m \neq s.
+        \]
+
+        \item \textbf{Конечной циклической подгруппой}, если существуют целые числа \( m \neq s \) такие, что:
+        \[
+        a^m = a^s.
+        \]
+        В этом случае, если \( m > s \), то \( a^{m-s} = e \), где \( e \) — нейтральный элемент группы.
+    \end{itemize}
+
+    \textbf{Порядок элемента} \( a \) — это наименьшее положительное целое число \( k \), такое что:
+    \[
+    a^k = e.
+    \]
+    Если такого \( k \) не существует, то порядок элемента \( a \) считается бесконечным.
+    \end{definition}
+\end{shdef}
+
+
+\section*{Пример циклической подгруппы: }
+
+Рассмотрим группу корней \( n \)-й степени из единицы: \(\langle \sqrt[n]{1} \rangle \)
+\[
+G = \{ z \in \mathbb{C} \mid z^n = 1 \}.
+\]
+Эти корни имеют вид:
+\[
+z_k = e^{i \frac{2\pi k}{n}}, \quad k = 0, 1, 2, \dots, n-1.
+\]
+Группа \( G \) является циклической и порождается элементом:
+\[
+a = e^{i \frac{2\pi}{n}}.
+\]
+Циклическая подгруппа, порождённая элементом \( a \), имеет вид:
+\[
+\langle a \rangle = \{ a^k \mid k = 0, 1, 2, \dots, n-1 \} = \{ e^{i \frac{2\pi k}{n}} \mid k = 0, 1, 2, \dots, n-1 \}.
+\]
+Элементы подгруппы:
+\[
+\langle a \rangle = \left\{ 1, e^{i \frac{2\pi}{n}}, e^{i \frac{4\pi}{n}}, \dots, e^{i \frac{2\pi (n-1)}{n}} \right\}.
+\]
+
+Рассмотрим случай \( n = 6 \). Корни 6-й степени из единицы:
+\[
+z_k = e^{i \frac{2\pi k}{6}}, \quad k = 0, 1, 2, 3, 4, 5.
+\]
+
+Элементы подгруппы:
+\[
+\langle a \rangle = \left\{ 1, e^{i \frac{\pi}{3}}, e^{i \frac{2\pi}{3}}, -1, e^{i \frac{4\pi}{3}}, e^{i \frac{5\pi}{3}} \right\}.
+\]
+
+
+
+\begin{center}
+\begin{tikzpicture}[scale=2]
+
+    % Окружность
+    \draw (0,0) circle (1);
+
+    % Корни 6-й степени из единицы
+    \foreach \k in {0,1,2,3,4,5} {
+        \pgfmathsetmacro{\angle}{60*\k}
+        \pgfmathsetmacro{\x}{cos(\angle)}
+        \pgfmathsetmacro{\y}{sin(\angle)}
+        \filldraw (\x,\y) circle (1pt); % Точки без подписей
+    }
+
+    % Соединение точек в шестиугольник
+    \foreach \k in {0,1,2,3,4,5} {
+        \pgfmathsetmacro{\angleA}{60*\k}
+        \pgfmathsetmacro{\angleB}{60*(\k+1)}
+        \pgfmathsetmacro{\xA}{cos(\angleA)}
+        \pgfmathsetmacro{\yA}{sin(\angleA)}
+        \pgfmathsetmacro{\xB}{cos(\angleB)}
+        \pgfmathsetmacro{\yB}{sin(\angleB)}
+        \draw (\xA,\yA) -- (\xB,\yB);
+    }
+
+    % Оси
+    \draw[->] (-1.5,0) -- (1.5,0) node[right] {Re};
+    \draw[->] (0,-1.5) -- (0,1.5) node[above] {Im};
+
+\end{tikzpicture}
+\end{center}
+
+\begin{shth}
+    \begin{theorem}
+    \leavevmode \nl 
+    
+        Пусть \( G = \langle a \rangle \) — конечная циклическая группа порядка \( k \), и \( e \) — нейтральный элемент группы. Тогда для любого целого числа \( n \) выполняется:
+        \[
+        a^n = e \iff n \text{ кратен } k.
+        \]
+        Иными словами, \( a^n = e \) тогда и только тогда, когда \( n = kd \) для некоторого целого числа \( d \).
+    \end{theorem}
+\end{shth}
+
+\begin{proof}
+\leavevmode \nl
+
+\boxed{\Longleftarrow} \quad Пусть \( n = kd \), где \( d \) — целое число. Тогда:
+\[
+a^n = a^{kd} = (a^k)^d = e^d = e.
+\]
+
+\boxed{\Longrightarrow} \quad Пусть \( a^n = e \). Предположим, что \( n \) не кратно \( k \). Тогда, разделив \( n \) на \( k \) с остатком, получим:
+\[
+n = kd + r, \quad \text{где } 0 < r < k.
+\]
+Подставим это в равенство \( a^n = e \):
+\[
+a^n = a^{kd + r} = a^{kd} \cdot a^r = (a^k)^d \cdot a^r = e^d \cdot a^r = a^r.
+\]
+Таким образом, \( a^r = e \). Но \( 0 < r < k \), что противоречит определению порядка \( k \) как наименьшего положительного числа, для которого \( a^k = e \). Следовательно, наше предположение неверно, и \( n \) должно быть кратно \( k \).
+\end{proof}
+\vspace{0.3cm}
+
+\begin{shth}
+    \begin{theorem}
+        Пусть \( G = \langle a \rangle \) — циклическая подгруппа порядка \( k \), где \\\( a \) — образующий элемент, а \( e \) — нейтральный элемент группы. Тогда множество
+        \[
+        \{ e, a, a^2, \dots, a^{k-1} \}
+        \]
+        полностью исчерпывает все элементы подгруппы \( G \). Иными словами, все элементы \( G \) имеют вид \( a^n \), где \( n = 0, 1, 2, \dots, k-1 \), и все эти элементы различны.
+    \end{theorem}
+\end{shth}
+
+\begin{proof}
+
+Докажем, что все элементы подгруппы различны. \\Предположим, что существуют два совпадающих элемента: \( a^m = a^s \), \\где \( 0 \leq m, s < k \) и \( m > s \). Тогда:
+\[
+a^m = a^s \implies a^{m-s} = e.
+\]
+Поскольку \( 0 < m - s < k \), это противоречит тому, что \( k \) — наименьшее положительное целое число, для которого \( a^k = e \). Следовательно, все элементы \( e, a, a^2, \dots, a^{k-1} \) различны.
+
+Теперь докажем, что других элементов в подгруппе нет.Рассмотрим произвольный элемент \( a^n \), где \( n \) — целое число. Разделим \( n \) на \( k \) с остатком:
+\[
+n = kd + r, \quad \text{где } 0 \leq r < k.
+\]
+Тогда:
+\[
+a^n = a^{kd + r} = (a^k)^d \cdot a^r = e^d \cdot a^r = a^r.
+\]
+Таким образом, любой элемент \( a^n \) совпадает с одним из элементов \( e, a, a^2, \dots, a^{k-1} \).
+\end{proof}
+
+\begin{shth}
+    \begin{theorem}
+        Пусть \(G = \langle a \rangle \) — бесконечная циклическая группа, порождённая \\элементом \( a \). Тогда:
+        \begin{enumerate}
+            \item Элемент \( a^{-1} \) также является образующим группы \( G \), то есть \( \langle a^{-1} \rangle \).
+            \item Других образующих в группе \( G \) нет.
+        \end{enumerate}
+    \end{theorem}
+\end{shth}
+
+
+\begin{proof}
+\leavevmode \nl
+
+Для любого целого числа \( n \) выполняется:
+\[
+a^n = (a^{-1})^{-n}.
+\]
+Таким образом, любой элемент \( a^n \) может быть выражен через степень \( a^{-1} \). Следовательно, \( a^{-1} \) также является образующим группы \( G \), то есть \( G = \langle a^{-1} \rangle \).
+
+Предположим, что существует другой образующий элемент \( a^s \), где \( s \neq \pm 1 \). Тогда \( a \) должен быть степенью \( a^s \), то есть:
+\[
+a = (a^s)^l = a^{sl},
+\]
+где \( l \) — целое число. Поскольку группа \( G \) бесконечна, все степени элемента \( a \) различны. Следовательно:
+\[
+a^{sl} = a \implies sl = 1.
+\]
+Так как \( s \) и \( l \) — целые числа, это возможно только если \( s = 1 \) или \( s = -1 \). Таким образом, единственными образующими группы \( G \) являются \( a \) и \( a^{-1} \).
+\end{proof}
+\vspace{0.2cm}
+
+\begin{shth}
+    \begin{theorem} Пусть \( G = \langle a \rangle \) — конечная циклическая группа порядка \( k \). 
+    
+    Тогда элемент \( a^s \) является образующим группы \( G \) (то есть \( \langle a^s \rangle = G \)) тогда и только тогда, когда числа \( s \) и \( k \) взаимно просты, то есть \( \text{НОД}(s, k) = 1 \).
+    \end{theorem}
+\end{shth}
+
+\begin{proof}
+\leavevmode \nl
+
+
+\boxed{\Longrightarrow} Пусть \( a^s \) — образующий элемент группы \( G \). 
+
+Предположим, что \( \text{НОД}(s, k) = d > 1 \). Тогда:
+\[
+k = k_1 \cdot d, \quad s = s_1 \cdot d, \quad \text{где } k_1, s_1 \in \mathbb{Z}.
+\]
+Рассмотрим степень \( (a^s)^{k_1} \):
+\[
+(a^s)^{k_1} = (a^{s_1 d})^{k_1} = (a^{k_1 d})^{s_1} = a^{k s_1} = e^{s_1} = e.
+\]
+Таким образом, \( (a^s)^{k_1} = e \), где \( 0 < k_1 < k \). Это противоречит тому, что порядок \( a^s \) равен \( k \), так как \( k_1 < k \). Следовательно, \( \text{НОД}(s, k) = 1 \).
+\\
+
+\boxed{\Longleftarrow} Пусть \( \text{НОД}(s, k) = 1 \). Тогда существуют целые числа \( u \) и \( v \) такие, что:
+\[
+k u + s v = 1.
+\]
+Рассмотрим элемент \( a \):
+\[
+a = a^{k u + s v} = a^{k u} \cdot a^{s v} = (a^k)^u \cdot (a^s)^v = e^u \cdot (a^s)^v = (a^s)^v.
+\]
+Таким образом, \( a \) является степенью \( a^s \), а значит, \( a^s \) порождает всю группу \( G \), то есть \( \langle a^s \rangle = G \).
+\end{proof}

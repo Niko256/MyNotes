@@ -1,0 +1,416 @@
+\begin{shth}
+    \begin{theorem} (Об инвариантности корневого подпространства)
+        \leavevmode \nl 
+            
+            Пусть \(\lambda \) - собственное число оператора \(\phi \). \(\lra \mathcal{L}_{\lambda}\) инвариантно относительно \(\phi\)
+    \end{theorem}
+\end{shth}
+
+
+
+\begin{proof}
+    Рассмотрим вектор \(x \in \mathcal{L}_{\lambda}\). По определению корневого подпространства, это означает, что существует такое натуральное число \(k\), что:
+    \[
+    (\phi - \lambda I)^k(x) = 0.
+    \]
+    Нам нужно показать, что \(\phi(x) \in \mathcal{L}_{\lambda}\), то есть:
+    \[
+    (\phi - \lambda I)^k(\phi(x)) = 0.
+    \]
+
+    Поскольку \((\phi - \lambda I)^k(x) = 0\), мы можем применить оператор \(\phi\) к обеим частям этого уравнения:
+    \[
+    \phi((\phi - \lambda I)^k(x)) = \phi(0) = 0.
+    \]
+
+    Используя ассоциативность операторов, мы можем переписать это как:
+    \[
+    (\phi - \lambda I)^k(\phi(x)) = 0.
+    \]
+
+    Таким образом, \(\phi(x) \in \mathcal{L}_{\lambda}\), что доказывает инвариантность корневого подпространства \(\mathcal{L}_{\lambda}\) относительно оператора \(\phi\).
+\end{proof}
+
+
+
+\begin{shth}
+    \begin{theorem}[О линейной независимости корневых векторов разной высоты]
+    \leavevmode \nl 
+    
+        Пусть $x_{1}, \ldots, x_{m} \in \mathcal{L}_{\lambda}$ и $k_{1}, \ldots, k_{m}$ — их соответствующие высоты. Тогда векторы $x_{1}, \ldots, x_{m}$ линейно независимы.
+    \end{theorem}
+\end{shth}
+
+\begin{proof}[Доказательство (от противного)]
+
+    Предположим, что векторы $x_{1}, \ldots, x_{m}$ ЛЗ. 
+    
+    Тогда существует нетривиальная линейная комбинация:
+    \[
+    \lambda_{1} x_{1} + \ldots + \lambda_{m} x_{m} = 0, \quad (\exists j : \lambda_{j} \neq 0)
+    \]
+   
+
+    Применим оператор $(\phi - \lambda I)^{k_{m} - 1}$ к этой комбинации:
+    \[
+    \lambda_{1} (\phi - \lambda I)^{k_{m} - 1} x_{1} + \ldots + \lambda_{m-1} (\phi - \lambda I)^{k_{m} - 1} x_{m-1} + \lambda_{m} (\phi - \lambda I)^{k_{m} - 1} x_{m} = 0.
+    \]
+
+    Поскольку $k_{1}, \ldots, k_{m-1} \leq k_{m} - 1$, то:
+    \[
+    \lambda_{m} (\phi - \lambda I)^{k_{m} - 1} x_{m} = 0 \implies \lambda_{m} = 0.
+    \]
+
+    Аналогично, применяя оператор $(\phi - \lambda I)^{k_{m} - 1}$ к оставшимся векторам, получаем, что $\lambda_{m-1} = 0, \ldots, \lambda_{1} = 0$. Это противоречит предположению о нетривиальности линейной комбинации.
+
+    Следовательно, векторы $x_{1}, \ldots, x_{m}$ ЛНЗ.
+\end{proof}
+
+\vspace{0.3cm}
+\begin{shth}
+    \begin{theorem}[О разложении пространства в прямую сумму корневых \\ подпространств]
+    \leavevmode \nl 
+    
+        Пусть $\phi \in \mathcal{L}(\mathbb{V}, \mathbb{V})$ и все корни характеристического многочлена $\phi$ вещественные: $\lambda_{1}, \ldots, \lambda_{s}$. Тогда пространство $\mathbb{V}$ разлагается в прямую сумму корневых \\ подпространств: 
+        \[
+        \mathbb{V} = \mathcal{L}_{\lambda_{1}} \oplus \ldots \oplus \mathcal{L}_{\lambda_{s}}.
+        \]
+    \end{theorem}
+\end{shth}
+
+\begin{proof}
+\leavevmode \nl 
+
+    Рассмотрим произвольный ненулевой вектор $x \in \mathbb{V}$. Пусть $m_{x}(t)$ — минимальный многочлен для $x$, который удовлетворяет следующим условиям:
+    \begin{enumerate}
+        \item $m_{x}(\phi)(x) = 0$.
+        \item $m_{x}(t)$ имеет старший коэффициент 1.
+        \item $m_{x}(t)$ минимальной возможной степени.
+    \end{enumerate}
+    Известно, что $m_{x}(t)$ делит характеристический многочлен $m_{\phi}(t)$, и все его корни вещественные. Следовательно, $m_{x}(t)$ можно представить в виде:
+    \[
+    m_{x}(t) = (t - \lambda_{1})^{k_1} \cdot \ldots \cdot (t - \lambda_{r})^{k_{r}}.
+    \]
+
+    Мы утверждаем, что $x$ можно разложить как $x = x_{1} + \ldots + x_{r}$, где $x_{i} \in \mathcal{L}_{\lambda_{i}}$. 
+    
+Докажем это утверждение методом математической индукции по $r$.
+
+    \textbf{База индукции:} $r = 1$. В этом случае $m_{x}(t) = (t - \lambda_{1})^{k_{1}}$, и, следовательно, \\$(\phi - \lambda_{1} I)^{k_{1}}(x) = 0$, что означает $x \in \mathcal{L}_{\lambda_{1}}$. Таким образом, $x = x + 0 + \ldots + 0$.
+
+    \textbf{Шаг индукции:} Предположим, что утверждение верно для $r-1$. \\ Рассмотрим случай $r$. Пусть
+    \[
+    m_{x}(t) = f(t) \cdot g(t),
+    \]
+    где $f(t) = (t - \lambda_{1})^{k_{1}} \cdot \ldots \cdot (t - \lambda_{r-1})^{k_{r-1}}$ и $g(t) = (t - \lambda_{r})^{k_{r}}$. 
+    
+    По теореме из школьной алгебры существуют многочлены $u(t)$ и $v(t)$ такие, что
+    \[
+    u(t) \cdot f(t) + v(t) \cdot g(t) = 1.
+    \]
+
+    Применяя оператор $\phi$, получаем:
+    \[
+    u(\phi) \cdot f(\phi) + v(\phi) \cdot g(\phi) = I.
+    \]
+
+    Следовательно,
+    \[
+    x = u(\phi) \cdot f(\phi)(x) + v(\phi) \cdot g(\phi)(x) = x_{1} + x_{2},
+    \]
+    где $x_{1} = u(\phi) \cdot f(\phi)(x)$ и $x_{2} = v(\phi) \cdot g(\phi)(x)$.
+
+
+    Докажем, что $x_{1}$ и $x_{2}$ принадлежат соответствующим корневым \\подпространствам. Поскольку $g(\phi)(x_{1}) = 0$, $m_{x_{1}}(t)$ делит $g(t)$, и по предположению индукции $x_{1}$ можно разложить в сумму векторов из корневых подпространств. 
+    
+    Аналогично, $f(\phi)(x_{2}) = 0$, и $m_{x_{2}}(t)$ делит $f(t)$, что также позволяет разложить $x_{2}$ в сумму векторов из корневых подпространств.
+
+    Таким образом, любой вектор $x \in \mathbb{V}$ можно разложить в сумму векторов из корневых подпространств, что доказывает, что $\mathbb{V} = \mathcal{L}_{\lambda_{1}} \oplus \ldots \oplus \mathcal{L}_{\lambda_{s}}$.
+\end{proof}
+
+\vspace{0.4cm}
+\begin{proof} (Что сумма является прямой).
+\leavevmode \nl 
+
+    Докажем утверждение по индукции по количеству слагаемых в прямой сумме.
+
+    \textbf{База индукции:} Рассмотрим случай $\mathcal{L}_{\lambda} \oplus \mathcal{L}_{\beta}$. Предположим, что $\mathcal{L}_{\lambda} \cap \mathcal{L}_{\beta} = \{0\}$.
+
+    Пусть $x \neq 0$ и $x \in \mathcal{L}_{\lambda} \cap \mathcal{L}_{\beta}$. Тогда $x \in \mathcal{L}_{\lambda}$, следовательно, $(\phi - \lambda I)^k (x) = 0$. 
+    
+    Также $x \in \mathcal{L}_{\beta}$, следовательно, $(\phi - \beta I)^s (x) = 0$. Это означает, что $m_{x}(t)$ делит оба многочлена $(t - \lambda)^k$ и $(t - \beta)^s$. Поскольку $\lambda \neq \beta$, $m_{x}(t) = 1$, что противоречит предположению $x \neq 0$. Следовательно, $x = 0$.
+
+    \textbf{Шаг индукции:} Предположим, что для $m$ подпространств $\mathcal{L}_{\lambda_{1}}, \ldots, \mathcal{L}_{\lambda_{m}}$ \\выполнено $\mathcal{L}_{\lambda_{1}} \oplus \ldots \oplus \mathcal{L}_{\lambda_{m}} \cap \mathcal{L}_{\lambda_{m+1}} = \{0\}$.
+
+    Пусть $x_{m+1} \neq 0$, $x_{m+1} \in \mathcal{L}_{\lambda_{m+1}}$, и $x_{m+1} \in \mathcal{L}_{\lambda_{1}} \oplus \ldots \oplus \mathcal{L}_{\lambda_{m}}$. Тогда $x_{m+1} = x_{1} + \ldots + x_{m}$, где $x_i \in \mathcal{L}_{\lambda_i}$.
+
+    Т.к. $(\phi - \lambda_{m+1} I)^{k_{m+1}}(x_{m+1}) = 0$, то $(\phi - \lambda_{m+1} I)^{k_{m+1}}(x_{1}) + \ldots + (\phi - \lambda_{m+1} I)^{k_{m+1}}(x_{m}) = 0$. 
+    
+    Это означает, что $y_{1} + \ldots + y_{m} = 0$, где $y_i = (\phi - \lambda_{m+1} I)^{k_{m+1}}(x_{i})$.
+
+    Поскольку сумма $\mathcal{L}_{\lambda_{1}} \oplus \ldots \oplus \mathcal{L}_{\lambda_{m}}$ прямая, то $y_{i} = 0$ для всех $i$. Следовательно, $x_{i} \in \mathcal{L}_{\lambda_{i}} \cap \mathcal{L}_{\lambda_{m+1}} = \{0\}$, что означает $x_{i} = 0$ для всех $i$. 
+    
+    Это противоречит предположению $x_{m+1} \neq 0$.
+
+    Таким образом, $z \in \mathcal{L}_{\lambda_{1}} \oplus \ldots \oplus \mathcal{L}_{\lambda_{m}} \oplus \mathcal{L}_{\lambda_{m+1}}$ представляется единственным образом 
+    
+    $$z = z_{1} + \ldots + z_{m} + z_{m+1},$$
+    
+    где $z_i \in \mathcal{L}_{\lambda_i}$. Следовательно, сумма $\mathcal{L}_{\lambda_{1}} \oplus \ldots \oplus \mathcal{L}_{\lambda_{m+1}}$ является прямой.
+\end{proof}
+
+\vspace{0.3cm}
+
+\begin{shcor}
+    \begin{corollary}[О ЛНЗ векторов из разных корневых подпространств]
+        \leavevmode \nl 
+        
+        Пусть $x_1 \in \mathcal{L}_{\alpha_1}, \ldots, x_m \in \mathcal{L}_{\alpha_m}$ — ненулевые векторы из различных корневых \\подпространств (т.е. $\alpha_i \neq \alpha_j$ при $i \neq j$). Тогда система векторов $\{x_1, \ldots, x_m\}$ линейно независима.
+    \end{corollary}
+\end{shcor}
+
+\begin{proof}
+    От противного:
+    
+    Предположим, что система векторов $\{x_1, \ldots, x_m\}$ линейно зависима. Тогда \\существуют числа $\lambda_1, \ldots, \lambda_m$, не все равные нулю, такие что:
+    \[
+        \lambda_1 x_1 + \ldots + \lambda_m x_m = 0
+    \]
+    \clearpage
+    Заметим, что:
+    \begin{itemize}
+        \item $\lambda_1 x_1 \in \mathcal{L}_{\alpha_1}$ (т.к. корневое подпространство является линейным)
+        \item $\vdots$
+        \item $\lambda_m x_m \in \mathcal{L}_{\alpha_m}$
+    \end{itemize}
+    
+    По доказанной теореме, сумма корневых подпространств 
+    $\mathcal{L}_{\alpha_1} \oplus \ldots \oplus \mathcal{L}_{\alpha_m}$ является прямой. 
+    
+    Следовательно, нулевой вектор может быть представлен единственным образом как сумма векторов из этих подпространств, а именно:
+    \[
+        0 = 0 + \ldots + 0
+    \]
+    
+    Таким образом:
+    \[
+        \begin{cases}
+            \lambda_1 x_1 = 0 \\
+            \vdots \\
+            \lambda_m x_m = 0
+        \end{cases}
+    \]
+    
+    Поскольку все $x_i \neq 0$ по условию, получаем:
+    \[
+        \lambda_1 = \ldots = \lambda_m = 0
+    \]
+    
+    Это противоречит предположению о том, что не все $\lambda_i$ равны нулю. 
+    \\Следовательно, система векторов $\{x_1, \ldots, x_m\}$ линейно независима.
+\end{proof}
+
+\vspace{0.3cm}
+
+\begin{shdef}
+    \begin{definition}
+        \leavevmode \nl 
+        
+        Жордановой клеткой порядка $k$ с собственным числом $\lambda$ называется квадратная матрица размера $k \times k$ вида:
+        
+        $J_k(\lambda) = \begin{pmatrix}
+            \lambda & 1 & 0 & \cdots & 0 \\
+            0 & \lambda & 1 & \cdots & 0 \\
+            0 & 0 & \lambda & \ddots & 0 \\
+            \vdots & \vdots & \ddots & \ddots & 1 \\
+            0 & 0 & \cdots & 0 & \lambda
+        \end{pmatrix}$
+    \end{definition}
+\end{shdef}
+
+\begin{shdef}
+    \begin{definition}
+        \leavevmode \nl 
+        
+        Жордановой формой матрицы $A$ называется блочно-диагональная матрица вида:
+        
+        $J = \begin{pmatrix}
+            J_{k_1}(\lambda_1) & 0 & \cdots & 0 \\
+            0 & J_{k_2}(\lambda_2) & \cdots & 0 \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0 & 0 & \cdots & J_{k_s}(\lambda_s)
+        \end{pmatrix}$
+        
+        где $J_{k_i}(\lambda_i)$ — жордановы клетки, соответствующие собственным числам $\lambda_i$.
+    \end{definition}
+\end{shdef}
+
+
+\begin{shdef}
+    \begin{definition}
+        \leavevmode \nl 
+        
+        Пусть $\phi: V \to V$ — линейный оператор и $x \in V$. Циклическим подпространством $\{x\}_{\phi}$ называется наименьшее подпространство, содержащее вектор $x$ и \\инвариантное относительно оператора $\phi$.
+        
+        Другими словами, если $x$ — корневой вектор, соответствующий собственному \\числу $\lambda_i$, то:
+        
+        $$\{x\}_{\phi} = \text{span}\{x, \phi(x), \phi^2(x), \dots, \phi^{k-1}(x)\}$$
+        
+        где $k$ - наименьшее натуральное число, при котором система векторов $x, \phi(x), \phi^2(x), \dots, \phi^k(x)$ становится \\линейно зависимой.
+    \end{definition}
+\end{shdef}
+
+\vspace{0.3cm}
+
+\begin{shth}
+    \begin{theorem}
+        Пусть \(\phi: V \to V\) — линейный оператор, и \(x \in V\) — корневой вектор, соответствующий собственному значению \(\lambda\). Тогда циклическое подпространство \(\{x\}_{\phi}\) существует.
+    \end{theorem}
+\end{shth}
+
+\begin{proof}
+    Рассмотрим последовательность векторов:
+    \[
+    x, \phi(x), \phi^2(x), \dots, \phi^k(x),
+    \]
+    где $k$ — наименьшее натуральное число, при котором эта система становится линейно зависимой. Такое $k$ существует, так как пространство $V$ конечномерно.
+
+    Построим подпространство:
+    \[
+    \{x\}_{\phi} = \operatorname{span}\{x, \phi(x), \phi^2(x), \dots, \phi^{k-1}(x)\}.
+    \]
+
+    \textbf{1. Содержит $x$:} \\
+    По построению, $x \in \{x\}_{\phi}$.
+
+    \textbf{2. Инвариантность относительно $\phi$:} \\
+    Для любого вектора $v \in \{x\}_{\phi}$ его образ $\phi(v)$ также принадлежит $\{x\}_{\phi}$. 
+    
+    Действительно, если
+    \[
+    v = \alpha_0 x + \alpha_1 \phi(x) + \dots + \alpha_{k-1} \phi^{k-1}(x),
+    \]
+    то
+    \[
+    \phi(v) = \alpha_0 \phi(x) + \alpha_1 \phi^2(x) + \dots + \alpha_{k-1} \phi^k(x).
+    \]
+    
+    Поскольку $\phi^k(x)$ линейно выражается через предыдущие векторы (так как система линейно зависима), $\phi(v) \in \{x\}_{\phi}$.
+
+    \textbf{3. Минимальность:} \\
+    
+    Пусть $W$ — любое подпространство, содержащее $x$ и инвариантное относительно $\phi$. Тогда:
+    \begin{itemize}
+        \item $x \in W$
+        \item $\phi(x) \in W$ (так как $W$ инвариантно)
+        \item $\phi^2(x) \in W$
+        \item $\vdots$
+        \item $\phi^{k-1}(x) \in W$
+    \end{itemize}
+    Следовательно, $\{x\}_{\phi} \subseteq W$.
+
+    Таким образом, $\{x\}_{\phi}$ — наименьшее подпространство, содержащее $x$ и инвариантное относительно $\phi$.
+\end{proof}
+
+\vspace{0.2cm}
+
+\begin{shth}
+    \begin{theorem}[О базисе циклического подпространства]
+    \leavevmode \nl 
+    
+    Пусть \( x \) — корневой вектор высоты \( k \sim \) собственному значению \( \lambda \). Тогда векторы
+    \[
+    \begin{cases}
+        e_0 = x, \\
+        e_1 = \phi(x), \\
+        \quad \vdots \\
+        e_{k-1} = \phi^{k-1}(x)
+    \end{cases}
+    \]
+    образуют базис в циклическом подпространстве \( \{x\}_{\phi} \).
+    \end{theorem}
+\end{shth}
+
+
+\begin{proof}
+    Рассмотрим корневой вектор \( x = e_0 \) высоты \( k \). По определению корневого вектора:
+    \[
+    (\phi - \lambda I)^k x = 0, \quad \text{но} \quad (\phi - \lambda I)^{k-1} x \neq 0.
+    \]
+    Определим векторы:
+    \[
+    \begin{cases}
+        e_1 = (\phi - \lambda I) x, \\
+        e_2 = (\phi - \lambda I)^2 x, \\
+        \quad \vdots \\
+        e_{k-1} = (\phi - \lambda I)^{k-1} x.
+    \end{cases}
+    \]
+    Заметим, что:
+    \begin{itemize}
+        \item \( e_0 = x \) имеет высоту \( k \),
+        \item \( e_1 = (\phi - \lambda I) x \) имеет высоту \( k-1 \),
+        \item $\vdots$
+        \item \( e_{k-1} = (\phi - \lambda I)^{k-1} x \) имеет высоту \( 1 \).
+    \end{itemize}
+    Векторы \( e_0, e_1, \ldots, e_{k-1} \) линейно независимы, так как они имеют разную высоту.
+
+    Пусть \( y \in \{x\}_{\phi} \). Тогда \( y \) можно выразить как:
+    \[
+    y = p(\phi)(x),
+    \]
+    где \( p(t) \) — многочлен степени не выше \( k-1 \):
+    \[
+    p(t) = \beta_0 + \beta_1 (t - \lambda) + \ldots + \beta_{k-1} (t - \lambda)^{k-1}.
+    \]
+    Подставляя \( \phi \) вместо \( t \), получаем:
+    \[
+    y = \beta_0 x + \beta_1 (\phi - \lambda I) x + \ldots + \beta_{k-1} (\phi - \lambda I)^{k-1} x.
+    \]
+    Это эквивалентно:
+    \[
+    y = \beta_0 e_0 + \beta_1 e_1 + \ldots + \beta_{k-1} e_{k-1}.
+    \]
+    Таким образом, мы показали, что векторы \( e_0, e_1, \ldots, e_{k-1} \) линейно независимы и любой вектор \( y \in \{x\}_{\phi} \) можно выразить как их линейную комбинацию:
+
+    Таким образом, \( \{e_0, e_1, \ldots, e_{k-1}\} \) образует базис в циклическом подпространстве \( \{x\}_{\phi} \).
+
+    Рассмотрим двойственный базис \( \epsilon^* = \{e_1^*, e_2^*, \ldots, e_k^*\} \), который строится путём перестановки векторов \( \{e_0, e_1, \ldots, e_{k-1}\} \) в обратном порядке:
+    \[
+    \begin{cases}
+        e_1^* = e_{k-1}, \\
+        e_2^* = e_{k-2}, \\
+        \quad \vdots \\
+        e_k^* = e_0.
+    \end{cases}
+    \]
+    Тогда:
+    \[
+    \begin{cases}
+        (\phi - \lambda I) e_1^* = (\phi - \lambda I) e_{k-1} = 0, \\
+        (\phi - \lambda I) e_2^* = (\phi - \lambda I) e_{k-2} = e_{k-1} = e_1^*, \\
+        \quad \vdots \\
+        (\phi - \lambda I) e_k^* = (\phi - \lambda I) e_0 = e_1 = e_{k-1}^*.
+    \end{cases}
+    \]
+    Это означает, что \( \epsilon^* \) — циклический базис (или жорданова цепочка) в \( \{x\}_{\phi} \).
+\end{proof}
+
+\vspace{0.2cm}
+
+\begin{shth}
+    \begin{theorem}[О существовании Жордановой формы матрицы]
+        \leavevmode \nl 
+        
+        Пусть \( U \) — инвариантное подпространство, состоящее из корневых векторов, \\соответствующих собственному значению \( \lambda \). \\Тогда \( U \) является прямой суммой циклических подпространств.
+    \end{theorem}
+\end{shth}
+
+\begin{shth}
+    \begin{theorem}
+        \leavevmode \nl 
+        
+        Пусть \( \phi \in \mathcal{L}(\mathbb{V}, \mathbb{V}) \). Если все корни характеристического уравнения действительные, то в пространстве \( \mathbb{V} \) существует базис \( \mathcal{E} \), в котором матрица \( A_{\mathcal{E}}^{\phi} \) имеет Жорданову форму.
+    \end{theorem}
+\end{shth}
+
