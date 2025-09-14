@@ -1,4 +1,4 @@
-**Файловый дескриптор** — это небольшое неотрицательное **целое число**, которое служит **абстрактным идентификатором (handle)** для ресурса ввода/вывода, открытого процессом и управляемого ядром операционной системы.
+**Файловый дескриптор** — это небольшое неотрицательное **целое число**, которое служит **абстрактным идентификатором** для ресурса ввода/вывода, открытого процессом и управляемого ядром операционной системы.
 
 
 При этом файловые дескрипторы представляют далеко не только файлы на диске, а также множество других ресурсов:
@@ -32,9 +32,9 @@ struct fdtable {
 // for example:
 FD Index  │ Referring to
 ──────────┼──────────────────────────────────────────
-    0     │ struct file для /dev/pts/0 (terminal)
-    1     │ struct file для /dev/pts/0 (terminal)
-    2     │ struct file для /dev/pts/0 (terminal)
+    0     │ struct file for /dev/pts/0 (terminal)
+    1     │ struct file for /dev/pts/0 (terminal)
+    2     │ struct file for /dev/pts/0 (terminal)
     3     │ struct file → struct socket (TCP-socket)
     4     │ struct file → pipe (reading)
     5     │ struct file → pipe (writing)
@@ -44,8 +44,8 @@ FD Index  │ Referring to
 
 struct file {
     mode_t f_mode;     // permissions (read/write)
-    loff_t f_pos;      // current position in the file
-    struct file_operations* f_op; // operations (read, write, poll)
+    loff_t f_pos;      // current position
+    struct file_operations* f_op; // operations (read, write, poll, ....)
     void* private_data;
 };
 ```

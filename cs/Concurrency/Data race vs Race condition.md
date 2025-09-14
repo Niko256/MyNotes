@@ -40,6 +40,7 @@ int main() {
     std::thread t2(add_money, 30);
     t1.join();
     t2.join();
+    /* !!! */
     std::cout << balance;
 }
 ```
